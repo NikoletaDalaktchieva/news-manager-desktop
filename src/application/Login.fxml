@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -13,15 +14,15 @@
          <children>
             <Label layoutX="100.0" layoutY="70.0" text="Login:" />
             <Label layoutX="70.0" layoutY="100.0" text="Password:" />
-            <TextField layoutX="150.0" layoutY="70.0" promptText="User ID" />
-            <TextField layoutX="150.0" layoutY="106.0" promptText="Password" />
-            <MFXButton layoutX="70.0" layoutY="150.0" text="Login" />
-            <MFXButton layoutX="250.0" layoutY="150.0" text="Cancel" />
+            <TextField fx:id="userId" layoutX="151.0" layoutY="66.0" promptText="User ID" />
+            <MFXButton layoutX="70.0" layoutY="150.0" onAction="#login" text="Login" />
+            <MFXButton layoutX="250.0" layoutY="150.0" onAction="#closeWindow" text="Cancel" />
             <Label layoutX="20.0" layoutY="20.0" text="LOGO">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <PasswordField fx:id="password" layoutX="151.0" layoutY="96.0" promptText="Password" />
          </children>
       </AnchorPane>
    </children>
