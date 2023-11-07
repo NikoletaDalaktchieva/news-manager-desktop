@@ -4,10 +4,10 @@
 package application;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.function.Predicate;
-
 
 import application.news.Article;
 import application.news.Categories;
@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -30,6 +31,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -47,24 +49,25 @@ import serverConection.ConnectionManager;
  */
 public class NewsReaderController {
 
+	@FXML
+	private AnchorPane loginWindow;
+
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
 
-	//TODO add attributes and methods as needed
+	// TODO add attributes and methods as needed
 
 	public NewsReaderController() {
-		//TODO
-		//Uncomment next sentence to use data from server instead dummy data
-		//newsReaderModel.setDummyData(false);
-		//Get text Label
-		
+		// TODO
+		// Uncomment next sentence to use data from server instead dummy data
+		// newsReaderModel.setDummyData(false);
+		// Get text Label
+
 	}
 
-		
-
 	private void getData() {
-		//TODO retrieve data and update UI
-		//The method newsReaderModel.retrieveData() can be used to retrieve data  
+		// TODO retrieve data and update UI
+		// The method newsReaderModel.retrieveData() can be used to retrieve data
 	}
 
 	/**
@@ -74,22 +77,34 @@ public class NewsReaderController {
 		return usr;
 	}
 
-	void setConnectionManager (ConnectionManager connection){
-		this.newsReaderModel.setDummyData(false); //System is connected so dummy data are not needed
+	void setConnectionManager(ConnectionManager connection) {
+		this.newsReaderModel.setDummyData(false); // System is connected so dummy data are not needed
 		this.newsReaderModel.setConnectionManager(connection);
 		this.getData();
 	}
-	
+
 	/**
 	 * @param usr the usr to set
 	 */
 	void setUsr(User usr) {
-		
+
 		this.usr = usr;
-		//Reload articles
+		// Reload articles
 		this.getData();
-		//TODO Update UI
+		// TODO Update UI
 	}
 
+	@FXML
+	void openLoginPage(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+
+		LoginController controller = fxmlLoader.<LoginController>getController();
+		controller.setConnectionManager(this.newsReaderModel.getConnectionManager());
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
+	}
 
 }

@@ -4,25 +4,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="loginWindow" prefHeight="294.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
       <Label layoutX="17.0" layoutY="5.0" text="Login" />
       <AnchorPane style="-fx-border-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Label layoutX="100.0" layoutY="70.0" text="Login:" />
-            <Label layoutX="70.0" layoutY="100.0" text="Password:" />
-            <TextField fx:id="userId" layoutX="151.0" layoutY="66.0" promptText="User ID" />
-            <MFXButton layoutX="70.0" layoutY="150.0" onAction="#login" text="Login" />
-            <MFXButton layoutX="250.0" layoutY="150.0" onAction="#closeWindow" text="Cancel" />
-            <Label layoutX="20.0" layoutY="20.0" text="LOGO">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="password" layoutX="151.0" layoutY="96.0" promptText="Password" />
+            <Label layoutX="100.0" layoutY="83.0" text="Login:" />
+            <Label layoutX="70.0" layoutY="113.0" text="Password:" />
+            <TextField fx:id="userId" layoutX="151.0" layoutY="79.0" promptText="User ID" />
+            <MFXButton layoutX="70.0" layoutY="163.0" onAction="#login" text="Login" />
+            <MFXButton layoutX="250.0" layoutY="163.0" onAction="#closeWindow" text="Cancel" />
+            <PasswordField fx:id="password" layoutX="151.0" layoutY="109.0" promptText="Password" />
+            <ImageView fitHeight="79.0" fitWidth="73.0" layoutX="4.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
