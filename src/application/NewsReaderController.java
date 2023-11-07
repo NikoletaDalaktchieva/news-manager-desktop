@@ -67,9 +67,8 @@ public class NewsReaderController {
 		// Uncomment next sentence to use data from server instead dummy data
 		newsReaderModel.setDummyData(false);
 		// Get text Label
-		
-	}
 
+	}
 
 	private void getData() {
 		// TODO retrieve data and update UI
@@ -131,5 +130,30 @@ public class NewsReaderController {
 		stage.setScene(new Scene(root1));
 		stage.show();
 
+	}
+
+	// TODO Niki pretty similar functions, should be optimized
+	@FXML
+	void editArticle(ActionEvent event) throws IOException {
+		openEditScreen(articleList.getSelectionModel().getSelectedItem());
+	}
+
+	@FXML
+	void newArticle(ActionEvent event) throws IOException {
+		openEditScreen(null);
+	}
+
+	void openEditScreen(Article article) throws IOException {
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleEdit.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+
+		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
+		controller.setUsr(usr);
+		controller.setArticle(article);
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
 	}
 }

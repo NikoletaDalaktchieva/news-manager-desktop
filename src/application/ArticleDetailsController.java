@@ -61,8 +61,8 @@ public class ArticleDetailsController {
 		if (usr == null) {
 			return; // Not logged user
 		}
-		userId.setText(" for " + usr.getLogin());
 		// TODO Update UI information
+		userId.setText(" for " + usr.getLogin());
 	}
 
 	/**

@@ -11,4 +11,5 @@ public enum Categories {
 	public String toString(){
 		return name;
 	}
+	
 }
