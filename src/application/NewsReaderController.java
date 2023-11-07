@@ -3,18 +3,15 @@
  */
 package application;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import application.news.Article;
 import application.news.Categories;
 import application.news.User;
 import application.utils.JsonArticle;
 import application.utils.exceptions.ErrorMalFormedArticle;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +24,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,12 +43,16 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.stage.FileChooser.ExtensionFilter;
 import serverConection.ConnectionManager;
+import javafx.collections.ObservableList;
 
 /**
  * @author ÁngelLucas
  *
  */
 public class NewsReaderController {
+
+	@FXML
+	private ListView<Article> articleList;
 
 	@FXML
 	private AnchorPane loginWindow;
@@ -60,14 +65,18 @@ public class NewsReaderController {
 	public NewsReaderController() {
 		// TODO
 		// Uncomment next sentence to use data from server instead dummy data
-		// newsReaderModel.setDummyData(false);
+		newsReaderModel.setDummyData(false);
 		// Get text Label
-
+		
 	}
+
 
 	private void getData() {
 		// TODO retrieve data and update UI
 		// The method newsReaderModel.retrieveData() can be used to retrieve data
+		newsReaderModel.retrieveData();
+		ObservableList<Article> articles = newsReaderModel.getArticles();
+		this.articleList.setItems(articles);
 	}
 
 	/**
@@ -107,4 +116,20 @@ public class NewsReaderController {
 		stage.show();
 	}
 
+	@FXML
+	void openArticle(ActionEvent event) throws IOException {
+		Article article = articleList.getSelectionModel().getSelectedItem();
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleDetails.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+
+		ArticleDetailsController controller = fxmlLoader.<ArticleDetailsController>getController();
+		controller.setUsr(usr);
+		controller.setArticle(article);
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));
+		stage.show();
+
+	}
 }

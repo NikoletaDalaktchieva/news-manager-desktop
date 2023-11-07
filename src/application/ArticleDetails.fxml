@@ -1,8 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="410.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ArticleDetailsController">
 
+<AnchorPane prefHeight="410.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ArticleDetailsController">
+   <children>
+      <Label layoutX="238.0" layoutY="80.0" text="Title:">
+         <font>
+            <Font name="Book Antiqua Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="title" layoutX="306.0" layoutY="80.0" prefHeight="17.0" prefWidth="189.0" text="title">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="238.0" layoutY="111.0" text="Subtitle:">
+         <font>
+            <Font name="Book Antiqua Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="subtitle" layoutX="306.0" layoutY="111.0" prefHeight="17.0" prefWidth="189.0" text="subtitle">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="237.0" layoutY="138.0" text="Category:">
+         <font>
+            <Font name="Book Antiqua Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="category" layoutX="306.0" layoutY="138.0" prefHeight="17.0" prefWidth="189.0" text="category">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="6.0" text="News Online">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="userId" layoutX="82.0" layoutY="6.0" />
+      <Label fx:id="abstractBody" alignment="TOP_LEFT" layoutX="83.0" layoutY="194.0" prefHeight="161.0" prefWidth="383.0" wrapText="true">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font>
+      </Label>
+      <MFXButton layoutX="24.0" layoutY="364.0" onAction="#back" text="Back">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="abstractBodyBtn" layoutX="397.0" layoutY="364.0" onAction="#changeAbstractBody" prefHeight="25.0" prefWidth="138.0" text="Chanage to Abstract">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font>
+      </MFXButton>
+      <HBox alignment="CENTER" layoutX="42.0" layoutY="52.0" prefHeight="130.0" prefWidth="180.0">
+         <children>
+            <ImageView fx:id="image" fitHeight="130.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>
