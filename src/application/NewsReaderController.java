@@ -10,6 +10,7 @@ import application.news.Categories;
 import application.news.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -53,10 +54,10 @@ public class NewsReaderController {
 	private MFXButton newBtn;
 
 	@FXML
-	private ComboBox<String> categories;
+	private MFXComboBox<String> categories;
 
 	@FXML
-	private TextField filterText;
+	private MFXTextField filterText;
 
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
@@ -77,7 +78,7 @@ public class NewsReaderController {
 		for (Categories c : Categories.values()) {
 			categories.getItems().add(c.toString());
 		}
-		categories.getSelectionModel().select(0);
+		categories.getSelectionModel().selectFirst();
 		refreshScreen();
 
 	}
@@ -196,7 +197,7 @@ public class NewsReaderController {
 
 	Boolean compateText(Parent a) {
 		String elementTitle = ((Label) a.lookup("#title")).getText();
-		return elementTitle.contains(filterText.getText());
+		return elementTitle.toLowerCase().contains(filterText.getText().toLowerCase());
 	}
 
 }

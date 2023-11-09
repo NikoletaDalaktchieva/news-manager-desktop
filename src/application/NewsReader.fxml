@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.ComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewsReaderController">
@@ -14,7 +14,7 @@
       <Label layoutX="14.0" layoutY="18.0" text="EIT-Newspaper" />
       <MFXButton layoutX="449.0" layoutY="14.0" onAction="#closeApplication" text="Exit" />
       <ListView fx:id="articlesListView" layoutX="12.0" layoutY="100.0" prefHeight="283.0" prefWidth="474.0" />
-      <ComboBox fx:id="categories" layoutX="339.0" layoutY="60.0" onAction="#filterByCategory" prefWidth="150.0" />
-      <TextField fx:id="filterText" layoutX="12.0" layoutY="60.0" onKeyTyped="#onTextChange" prefHeight="25.0" prefWidth="208.0" promptText="Article Title" />
+      <MFXComboBox fx:id="categories" floatMode="DISABLED" layoutX="325.0" layoutY="57.0" onAction="#filterByCategory" prefHeight="32.0" prefWidth="161.0" />
+      <MFXTextField fx:id="filterText" floatMode="DISABLED" layoutX="12.0" layoutY="57.0" onKeyReleased="#onTextChange" prefHeight="32.0" prefWidth="208.0" promptText="Article Title" />
    </children>
 </AnchorPane>
