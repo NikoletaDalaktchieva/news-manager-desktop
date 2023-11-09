@@ -21,8 +21,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
 import javafx.collections.FXCollections;
@@ -51,6 +54,9 @@ public class NewsReaderController {
 
 	@FXML
 	private ComboBox<String> categories;
+
+	@FXML
+	private TextField filterText;
 
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
@@ -133,8 +139,6 @@ public class NewsReaderController {
 
 	void refreshScreen() {
 		newBtn.setVisible(usr != null);
-		articlesListView.getItems().clear();
-
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
 
@@ -143,7 +147,6 @@ public class NewsReaderController {
 		for (Article article : articles) {
 			articleCards.add(generateVRow(article));
 		}
-
 		filteredData = new FilteredList<>(articleCards, article -> true);
 		articlesListView.setItems(filteredData);
 
@@ -185,4 +188,15 @@ public class NewsReaderController {
 		String elementCategory = ((Label) a.lookup("#category")).getText();
 		return selectedCategory.equals(elementCategory);
 	}
+
+	@FXML
+	void onTextChange(KeyEvent event) {
+		filteredData.setPredicate(a -> compateText(a));
+	}
+
+	Boolean compateText(Parent a) {
+		String elementTitle = ((Label) a.lookup("#title")).getText();
+		return elementTitle.contains(filterText.getText());
+	}
+
 }
