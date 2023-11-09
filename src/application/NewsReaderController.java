@@ -8,28 +8,21 @@ import java.io.IOException;
 import application.news.Article;
 import application.news.Categories;
 import application.news.User;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
 import javafx.collections.FXCollections;
@@ -43,7 +36,7 @@ import javafx.collections.transformation.FilteredList;
 public class NewsReaderController {
 
 	@FXML
-	private VBox articlesListView;
+	private ListView<Parent> articlesListView;
 
 	private FilteredList<Parent> filteredData;
 
@@ -162,8 +155,7 @@ public class NewsReaderController {
 			articleCards.add(generateVRow(article));
 		}
 		filteredData = new FilteredList<>(articleCards, article -> true);
-		articlesListView.getChildren().clear();
-		articlesListView.getChildren().addAll(filteredData);
+		articlesListView.setItems(filteredData);
 
 	}
 
