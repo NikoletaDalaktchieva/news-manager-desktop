@@ -19,12 +19,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * @author ÁngelLucas
@@ -33,7 +36,9 @@ import javafx.collections.ObservableList;
 public class NewsReaderController {
 
 	@FXML
-	private VBox articlesVBox;
+	private ListView<Parent> articlesListView;
+
+	private FilteredList<Parent> filteredData;
 
 	@FXML
 	private AnchorPane loginWindow;
@@ -128,7 +133,7 @@ public class NewsReaderController {
 
 	void refreshScreen() {
 		newBtn.setVisible(usr != null);
-		articlesVBox.getChildren().clear();
+		articlesListView.getItems().clear();
 
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
@@ -138,14 +143,17 @@ public class NewsReaderController {
 		for (Article article : articles) {
 			articleCards.add(generateVRow(article));
 		}
-		articlesVBox.getChildren().addAll(articleCards);
+
+		filteredData = new FilteredList<>(articleCards, article -> true);
+		articlesListView.setItems(filteredData);
+
 	}
 
 	private Parent generateVRow(Article article) {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ArticleCard.fxml"));
-			Parent root1 = (Parent) loader.load();
+			Parent root1 = loader.load();
 			ArticleCardControler controller = loader.<ArticleCardControler>getController();
 			controller.setData(article, usr);
 			return root1;
@@ -163,5 +171,18 @@ public class NewsReaderController {
 	void closeApplication(ActionEvent event) {
 		Platform.exit();
 		System.exit(0);
+	}
+
+	@FXML
+	void filterByCategory(ActionEvent event) {
+		filteredData.setPredicate(a -> compateCategory(a));
+	}
+
+	Boolean compateCategory(Parent a) {
+		String selectedCategory = categories.getSelectionModel().getSelectedItem();
+		if (selectedCategory.equals("All"))
+			return true;
+		String elementCategory = ((Label) a.lookup("#category")).getText();
+		return selectedCategory.equals(elementCategory);
 	}
 }
