@@ -5,6 +5,8 @@ package application;
 
 import java.io.FileWriter;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -51,16 +53,16 @@ public class ArticleEditController {
 	private MFXButton abstractBodyBtn;
 
 	@FXML
-	private ComboBox<String> categories;
+	private MFXComboBox<String> categories;
 
 	@FXML
 	private ImageView image;
 
 	@FXML
-	private TextField subtitle;
+	private MFXTextField subtitle;
 
 	@FXML
-	private TextField title;
+	private MFXTextField title;
 
 	@FXML
 	private Label userId;
@@ -193,7 +195,7 @@ public class ArticleEditController {
 		subtitle.setText(article.getSubtitle());
 
 		// TODO Niki Много лош подход, така ли го искаме?
-		categories.getSelectionModel().select(article.getCategory());
+		categories.getSelectionModel().selectItem(article.getCategory());
 		abstractBody.setText(article.getAbstractText());
 		abstractBodyBtn.setText("Change to Body");
 		image.setImage(article.getImageData());
