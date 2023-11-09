@@ -40,7 +40,7 @@ import javafx.collections.transformation.FilteredList;
 public class NewsReaderController {
 
 	@FXML
-	private ListView<Parent> articlesListView;
+	private VBox articlesListView;
 
 	private FilteredList<Parent> filteredData;
 
@@ -108,7 +108,16 @@ public class NewsReaderController {
 	}
 
 	@FXML
-	void openLoginPage(ActionEvent event) throws IOException {
+	void onLoginClick(ActionEvent event) throws IOException {
+		if (usr == null) {
+			openLoginPage();
+		} else {
+			usr = null;
+			refreshScreen();
+		}
+	}
+
+	void openLoginPage() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 
@@ -139,6 +148,8 @@ public class NewsReaderController {
 	}
 
 	void refreshScreen() {
+		loginBtn.setText(usr == null ? "Login" : "Logout");
+
 		newBtn.setVisible(usr != null);
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
@@ -149,7 +160,8 @@ public class NewsReaderController {
 			articleCards.add(generateVRow(article));
 		}
 		filteredData = new FilteredList<>(articleCards, article -> true);
-		articlesListView.setItems(filteredData);
+		articlesListView.getChildren().clear();
+		articlesListView.getChildren().addAll(filteredData);
 
 	}
 

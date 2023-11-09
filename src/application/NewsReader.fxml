@@ -2,19 +2,26 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewsReaderController">
    <children>
-      <MFXButton fx:id="newBtn" layoutX="329.0" layoutY="14.0" onAction="#newArticle" prefHeight="25.0" prefWidth="46.0" text="New" />
-      <MFXButton fx:id="loginBtn" layoutX="386.0" layoutY="14.0" onAction="#openLoginPage" prefHeight="25.0" prefWidth="55.0" text="Login" />
-      <Label layoutX="14.0" layoutY="18.0" text="EIT-Newspaper" />
-      <MFXButton layoutX="449.0" layoutY="14.0" onAction="#closeApplication" text="Exit" />
-      <ListView fx:id="articlesListView" layoutX="12.0" layoutY="100.0" prefHeight="283.0" prefWidth="474.0" />
-      <MFXComboBox fx:id="categories" floatMode="DISABLED" layoutX="325.0" layoutY="57.0" onAction="#filterByCategory" prefHeight="32.0" prefWidth="161.0" />
-      <MFXTextField fx:id="filterText" floatMode="DISABLED" layoutX="12.0" layoutY="57.0" onKeyReleased="#onTextChange" prefHeight="32.0" prefWidth="208.0" promptText="Article Title" />
+      <MFXButton fx:id="newBtn" layoutX="316.0" layoutY="14.0" onAction="#newArticle" prefHeight="25.0" prefWidth="46.0" rippleColor="#bdbdbd" text="New" />
+      <MFXButton fx:id="loginBtn" layoutX="373.0" layoutY="14.0" onAction="#onLoginClick" prefHeight="25.0" prefWidth="55.0" text="Login" />
+      <Label layoutX="23.0" layoutY="18.0" text="EIT-Newspaper" />
+      <MFXScrollPane layoutX="23.0" layoutY="109.0" prefHeight="250.0" prefWidth="450.0">
+         <content>
+            <VBox fx:id="articlesListView" />
+         </content>
+      </MFXScrollPane>
+      <MFXButton layoutX="436.0" layoutY="14.0" onAction="#closeApplication" text="Exit" />
+      <MFXComboBox fx:id="categories" floatMode="DISABLED" layoutX="311.0" layoutY="57.0" onAction="#filterByCategory" prefHeight="32.0" prefWidth="161.0" />
+      <MFXTextField fx:id="filterText" floatMode="DISABLED" layoutX="23.0" layoutY="57.0" onKeyReleased="#onTextChange" prefHeight="32.0" prefWidth="208.0" promptText="Article Title" />
+      <MFXFontIcon layoutX="231.0" layoutY="31.0" />
    </children>
 </AnchorPane>
