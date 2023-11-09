@@ -57,7 +57,10 @@ public class NewsReaderController {
 
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
-
+	
+	private String textSearch;
+	private String selectedCategory;
+	
 	// TODO add attributes and methods as needed
 
 	public NewsReaderController() {
@@ -196,26 +199,38 @@ public class NewsReaderController {
 
 	@FXML
 	void filterByCategory(ActionEvent event) {
-		filteredData.setPredicate(a -> compateCategory(a));
+		filteredData.setPredicate(a -> {
+			selectedCategory = categories.getSelectionModel().getSelectedItem();
+			return filterPredicate(a);
+		});
 	}
-
-	Boolean compateCategory(Parent a) {
-		String selectedCategory = categories.getSelectionModel().getSelectedItem();
-		if (selectedCategory.equals("All"))
-			return true;
-		String elementCategory = ((Label) a.lookup("#category")).getText();
-		return selectedCategory.equals(elementCategory);
-	}
-
+	
 	@FXML
 	void onTextChange(KeyEvent event) {
-		filteredData.setPredicate(a -> compateText(a));
+		filteredData.setPredicate(a -> {
+			textSearch = filterText.getText();
+			return filterPredicate(a);	
+		});
+	}
+	
+	private boolean filterPredicate(Parent a) {
+		var title = ((Label) a.lookup("#title")).getText();
+		var category = ((Label) a.lookup("#category")).getText();
+		
+		return equalToSelectedCategoryPredicate(category) && containsTextSearchPredicate(title);
+		
 	}
 
-	Boolean compateText(Parent a) {
-		String elementTitle = ((Label) a.lookup("#title")).getText();
-		return elementTitle.toLowerCase().contains(filterText.getText().toLowerCase());
+	private boolean equalToSelectedCategoryPredicate(String elementCategory) {
+		return selectedCategory.equals("All") ? true : elementCategory.equals(selectedCategory) ;
+	}
+	
+	private boolean containsTextSearchPredicate(String text) {
+		return notEmpty(textSearch) ? text.toLowerCase().contains(textSearch.toLowerCase()) : true;
 	}
 
 
+	private boolean notEmpty(String string) {
+		return string != null && !string.isEmpty() && !string.trim().equals("");
+	}
 }
