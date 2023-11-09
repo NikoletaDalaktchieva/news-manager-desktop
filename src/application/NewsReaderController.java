@@ -55,10 +55,15 @@ public class NewsReaderController {
 	private ListView<Article> articleList;
 
 	@FXML
+	private VBox articlesVBox;
+
+	@FXML
 	private AnchorPane loginWindow;
 
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
+
+	
 
 	// TODO add attributes and methods as needed
 
@@ -66,6 +71,7 @@ public class NewsReaderController {
 		// TODO
 		// Uncomment next sentence to use data from server instead dummy data
 		newsReaderModel.setDummyData(false);
+
 		// Get text Label
 
 	}
@@ -76,6 +82,7 @@ public class NewsReaderController {
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
 		this.articleList.setItems(articles);
+	
 	}
 
 	/**
@@ -102,15 +109,25 @@ public class NewsReaderController {
 		// TODO Update UI
 	}
 
+	void refreshScreen() {
+		if (usr == null)
+			return;
+
+	}
+
 	@FXML
 	void openLoginPage(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 
 		LoginController controller = fxmlLoader.<LoginController>getController();
-		controller.setConnectionManager(this.newsReaderModel.getConnectionManager());
+		controller.sendData(this.newsReaderModel.getConnectionManager(), this.usr);
 
 		Stage stage = new Stage();
+		stage.setOnHidden(ev -> {
+			setUsr(controller.getLoggedUsr());
+			refreshScreen();
+		});
 		stage.setScene(new Scene(root1));
 		stage.show();
 	}

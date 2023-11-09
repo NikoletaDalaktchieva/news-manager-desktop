@@ -6,10 +6,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewsReaderController">
    <children>
-      <ListView fx:id="articleList" layoutX="24.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" />
-      <MFXButton layoutX="92.0" layoutY="244.0" onAction="#editArticle" prefHeight="25.0" prefWidth="55.0" text="Edit" />
+      <ListView fx:id="articleList" layoutX="24.0" layoutY="35.0" prefHeight="200.0" prefWidth="124.0" />
+      <MFXButton layoutX="87.0" layoutY="243.0" onAction="#editArticle" prefHeight="25.0" prefWidth="55.0" text="Edit" />
       <MFXButton layoutX="31.0" layoutY="345.0" onAction="#newArticle" prefHeight="25.0" prefWidth="46.0" text="New" />
-      <MFXButton layoutX="24.0" layoutY="244.0" onAction="#openArticle" prefHeight="25.0" prefWidth="61.0" text="Open" />
-      <MFXButton layoutX="436.0" layoutY="14.0" onAction="#openLoginPage" prefHeight="25.0" prefWidth="55.0" text="Login" />
+      <MFXButton layoutX="23.0" layoutY="243.0" onAction="#openArticle" prefHeight="25.0" prefWidth="61.0" text="Open" />
+      <MFXButton layoutX="232.0" layoutY="345.0" onAction="#openLoginPage" prefHeight="25.0" prefWidth="55.0" text="Login" />
    </children>
 </AnchorPane>
