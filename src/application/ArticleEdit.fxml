@@ -46,7 +46,7 @@
       </MFXButton>
       <HBox alignment="CENTER" layoutX="42.0" layoutY="52.0" prefHeight="130.0" prefWidth="180.0">
          <children>
-            <ImageView fx:id="image" fitHeight="130.0" fitWidth="180.0" onDragDetected="#onImageClicked" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="image" fitHeight="130.0" fitWidth="180.0" onMouseClicked="#onImageClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <MFXButton layoutX="70.0" layoutY="364.0" onAction="#sendAndBack" text="Send &amp; back">
