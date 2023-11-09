@@ -3,6 +3,7 @@ package application;
 import application.news.User;
 
 import serverConection.ConnectionManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -37,7 +38,8 @@ public class LoginController {
 		return loggedUsr;
 	}
 
-	void setConnectionManager(ConnectionManager connection) {
+	void sendData(ConnectionManager connection, User usr) {
+		this.loggedUsr = usr;
 		this.loginModel.setConnectionManager(connection);
 	}
 
@@ -45,13 +47,13 @@ public class LoginController {
 	void closeWindow(ActionEvent event) {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.close();
-
 	}
 
 	@FXML
 	void login(ActionEvent event) {
-		//userId.setText("DEV_TEAM_01");
-		//password.setText("123501@3");
+		// TODO Niki Remove
+		userId.setText("DEV_TEAM_01");
+		password.setText("123501@3");
 		if (validateFields() && validateUser()) {
 			this.closeWindow(event);
 		} else {
