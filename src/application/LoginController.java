@@ -1,16 +1,14 @@
 package application;
 
 import application.news.User;
-
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import serverConection.ConnectionManager;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,10 +18,10 @@ public class LoginController {
 	private AnchorPane loginWindow;
 
 	@FXML
-	private PasswordField password;
+	private MFXPasswordField password;
 
 	@FXML
-	private TextField userId;
+	private MFXTextField userId;
 
 	private LoginModel loginModel = new LoginModel();
 
