@@ -23,7 +23,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -48,10 +51,10 @@ public class NewsReaderController {
 	private AnchorPane loginWindow;
 
 	@FXML
-	private MFXButton loginBtn;
+	private ImageView loginImage;
 
 	@FXML
-	private MFXButton newBtn;
+	private ImageView newBtn;
 
 	@FXML
 	private MFXComboBox<String> categories;
@@ -108,9 +111,9 @@ public class NewsReaderController {
 	}
 
 	@FXML
-	void onLoginClick(ActionEvent event) throws IOException {
+	void onLoginClick(MouseEvent event) throws IOException {
 		if (usr == null) {
-			openLoginPage();
+			openLoginPage();			
 		} else {
 			usr = null;
 			refreshScreen();
@@ -134,7 +137,7 @@ public class NewsReaderController {
 	}
 
 	@FXML
-	void newArticle(ActionEvent event) throws IOException {
+	void newArticle(MouseEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleEdit.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 
@@ -148,8 +151,7 @@ public class NewsReaderController {
 	}
 
 	void refreshScreen() {
-		loginBtn.setText(usr == null ? "Login" : "Logout");
-
+		refreshLoginBtn();
 		newBtn.setVisible(usr != null);
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
@@ -163,6 +165,17 @@ public class NewsReaderController {
 		articlesListView.getChildren().clear();
 		articlesListView.getChildren().addAll(filteredData);
 
+	}
+
+	private void refreshLoginBtn() {
+		if(usr == null) {
+			loginImage.setImage(new Image(getClass()
+			        .getResourceAsStream("/images/login.png")));
+		} else {
+			loginImage.setImage(new Image(getClass()
+			        .getResourceAsStream("/images/logout.png")));
+		}
+		
 	}
 
 	private Parent generateVRow(Article article) {
@@ -184,7 +197,7 @@ public class NewsReaderController {
 	}
 
 	@FXML
-	void closeApplication(ActionEvent event) {
+	void closeApplication(MouseEvent event) {
 		Platform.exit();
 		System.exit(0);
 	}
@@ -211,5 +224,6 @@ public class NewsReaderController {
 		String elementTitle = ((Label) a.lookup("#title")).getText();
 		return elementTitle.toLowerCase().contains(filterText.getText().toLowerCase());
 	}
+
 
 }

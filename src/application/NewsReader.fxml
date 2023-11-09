@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewsReaderController">
    <children>
-      <MFXButton fx:id="newBtn" layoutX="316.0" layoutY="14.0" onAction="#newArticle" prefHeight="25.0" prefWidth="46.0" rippleColor="#bdbdbd" text="New" />
-      <MFXButton fx:id="loginBtn" layoutX="373.0" layoutY="14.0" onAction="#onLoginClick" prefHeight="25.0" prefWidth="55.0" text="Login" />
-      <Label layoutX="23.0" layoutY="18.0" text="EIT-Newspaper" />
+      <AnchorPane prefHeight="44.0" prefWidth="500.0" style="-fx-background-color: #663cb2;">
+         <children>
+            <Label layoutX="14.0" layoutY="12.0" text="EIT-Newspaper" textFill="WHITE">
+               <font>
+                  <Font name="Book Antiqua" size="15.0" />
+               </font></Label>
+            <ImageView fx:id="loginImage" fitHeight="20.0" fitWidth="20.0" layoutX="430.0" layoutY="10.0" onMouseClicked="#onLoginClick" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/login.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="newBtn" fitHeight="20.0" fitWidth="20.0" layoutX="400.0" layoutY="10.0" onMouseClicked="#newArticle" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="close" fitHeight="20.0" fitWidth="20.0" layoutX="460.0" layoutY="10.0" onMouseClicked="#closeApplication" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <MFXScrollPane layoutX="23.0" layoutY="109.0" prefHeight="250.0" prefWidth="450.0">
          <content>
             <VBox fx:id="articlesListView" />
          </content>
       </MFXScrollPane>
-      <MFXButton layoutX="436.0" layoutY="14.0" onAction="#closeApplication" text="Exit" />
       <MFXComboBox fx:id="categories" floatMode="DISABLED" layoutX="311.0" layoutY="57.0" onAction="#filterByCategory" prefHeight="32.0" prefWidth="161.0" />
       <MFXTextField fx:id="filterText" floatMode="DISABLED" layoutX="23.0" layoutY="57.0" onKeyReleased="#onTextChange" prefHeight="32.0" prefWidth="208.0" promptText="Article Title" />
       <MFXFontIcon layoutX="231.0" layoutY="31.0" />
