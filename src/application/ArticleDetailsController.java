@@ -106,18 +106,4 @@ public class ArticleDetailsController {
 		webView.getEngine().loadContent(text);
 	}
 
-	@FXML
-	void saveToFile(ActionEvent event) {
-		String name = article.getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
-		String fileName = "saveNews//" + name + ".news";
-		JsonObject data = JsonArticle.articleToJson(article);
-		try (FileWriter file = new FileWriter(fileName)) {
-			file.write(data.toString());
-			file.flush();
-			new Alert(AlertType.INFORMATION, "File saved successfully!").show();
-		} catch (IOException e) {
-			new Alert(AlertType.ERROR, "File saving problem!").show();
-		}
-	}
-
 }

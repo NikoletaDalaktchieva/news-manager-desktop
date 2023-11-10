@@ -161,7 +161,6 @@ public class NewsReaderController {
 
 		refreshLoginBtn();
 		newBtn.setVisible(usr != null);
-		uploadBtn.setVisible(usr != null);
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
 
