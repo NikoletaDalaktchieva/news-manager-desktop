@@ -108,7 +108,6 @@ public class NewsReaderController {
 		this.usr = usr;
 		// Reload articles
 		this.getData();
-		// TODO Update UI
 	}
 
 	@FXML
