@@ -61,10 +61,14 @@ public class LoginController {
 	private boolean validateFields() {
 		if (userId.getText().isEmpty()) {
 			userId.setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-border-radius: 3px;");
+		} else {
+			userId.setStyle("-fx-border-color: black ; -fx-border-width: 0px ; -fx-border-radius: 3px;");
 		}
 
 		if (password.getText().isEmpty()) {
 			password.setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-border-radius: 3px;");
+		} else {
+			password.setStyle("-fx-border-color: black ; -fx-border-width: 0px ; -fx-border-radius: 3px;");
 		}
 
 		return !userId.getText().isEmpty() && !password.getText().isEmpty();

@@ -94,6 +94,7 @@ public class ArticleDetailsController {
 	}
 
 	void changeAbstractBody(String text) {
+		System.out.println(text);
 		webView.getEngine().loadContent(text);
 	}
 }

@@ -34,7 +34,8 @@
          </font>
       </Label>
       <Label fx:id="userId" layoutX="82.0" layoutY="6.0" />
-      <TextArea fx:id="abstractBody" layoutX="83.0" layoutY="194.0" prefHeight="161.0" prefWidth="383.0" promptText="Abstract" />
+      <TextArea fx:id="abstractBody" layoutX="80.0" layoutY="190.0" prefHeight="160.0" prefWidth="400.0" promptText="Abstract" />
+      <WebView fx:id="webView" layoutX="80.0" layoutY="190.0" prefHeight="160.0" prefWidth="400.0" visible="false" />
       <MFXButton layoutX="24.0" layoutY="364.0" onAction="#back" text="Back">
          <font>
             <Font name="Book Antiqua" size="12.0" />
@@ -68,6 +69,5 @@
       <MFXTextField fx:id="title" floatMode="DISABLED" layoutX="315.0" layoutY="66.0" prefHeight="30.0" prefWidth="184.0" />
       <MFXTextField fx:id="subtitle" floatMode="DISABLED" layoutX="315.0" layoutY="102.0" prefHeight="30.0" prefWidth="184.0" />
       <MFXComboBox fx:id="categories" floatMode="DISABLED" layoutX="314.0" layoutY="137.0" prefHeight="32.0" prefWidth="184.0" />
-      <WebView fx:id="webView" layoutX="83.0" layoutY="193.0" prefHeight="161.0" prefWidth="383.0" visible="false" />
    </children>
 </AnchorPane>

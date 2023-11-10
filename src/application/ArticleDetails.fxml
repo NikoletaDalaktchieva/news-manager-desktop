@@ -64,6 +64,6 @@
             <ImageView fx:id="image" fitHeight="130.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <WebView fx:id="webView" layoutX="53.0" layoutY="193.0" opacity="0.0" prefHeight="160.0" prefWidth="444.0" />
+      <WebView fx:id="webView" layoutX="80.0" layoutY="190.0" prefHeight="160.0" prefWidth="400.0" />
    </children>
 </AnchorPane>
