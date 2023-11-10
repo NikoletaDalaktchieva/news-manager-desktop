@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 /**
@@ -36,13 +37,14 @@ public class ArticleDetailsController {
 	private Label userId;
 
 	@FXML
-	private Label abstractBody;
-
-	@FXML
 	private MFXButton abstractBodyBtn;
 
 	@FXML
 	private ImageView image;
+
+	@FXML
+	private WebView webView;
+
 	/**
 	 * Registered user
 	 */
@@ -74,10 +76,10 @@ public class ArticleDetailsController {
 		title.setText(article.getTitle());
 		subtitle.setText(article.getSubtitle());
 		category.setText(article.getCategory());
-		abstractBody.setText(article.getAbstractText());
+		changeAbstractBody(article.getAbstractText());
 		abstractBodyBtn.setText("Change to Body");
 		image.setImage(article.getImageData());
-		
+
 	}
 
 	@FXML
@@ -90,12 +92,15 @@ public class ArticleDetailsController {
 	void changeAbstractBody(ActionEvent event) {
 		// TODO Niki better codde
 		if (abstractBodyBtn.getText() == "Change to Abstract") {
-			abstractBody.setText(article.getAbstractText());
+			changeAbstractBody(article.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
 		} else {
-			abstractBody.setText(article.getBodyText());
+			changeAbstractBody(article.getBodyText());
 			abstractBodyBtn.setText("Change to Abstract");
 		}
+	}
 
+	void changeAbstractBody(String text) {
+		webView.getEngine().loadContent(text);
 	}
 }
