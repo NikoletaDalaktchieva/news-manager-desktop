@@ -22,9 +22,9 @@
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font></Label>
-      <MFXButton fx:id="openBtn" layoutX="365.0" layoutY="12.0" onAction="#openArticle" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #663cb2;" text="Open" textFill="WHITE" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="12.0" />
-      <MFXButton fx:id="editBtn" layoutX="365.0" layoutY="42.0" onAction="#editArticle" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #fdd655;" text="Edit" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="42.0" />
-      <MFXButton fx:id="deleteBtn" layoutX="365.0" layoutY="72.0" onAction="#deleteArticle" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #ef403e;" text="Delete" textFill="#f8f8f8" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="72.0" />
+      <MFXButton fx:id="openBtn" layoutX="365.0" layoutY="12.0" onAction="#openArticle" prefHeight="25.0" prefWidth="58.0" text="Open" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="12.0" />
+      <MFXButton fx:id="editBtn" layoutX="365.0" layoutY="42.0" onAction="#editArticle" prefHeight="25.0" prefWidth="58.0" text="Edit" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="42.0" />
+      <MFXButton fx:id="deleteBtn" layoutX="365.0" layoutY="72.0" onAction="#deleteArticle" prefHeight="25.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="72.0" />
       <Label fx:id="subtitle" layoutX="106.0" layoutY="75.0" prefHeight="17.0" prefWidth="259.0" text="Label">
          <font>
             <Font name="Book Antiqua" size="12.0" />
