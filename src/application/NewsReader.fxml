@@ -23,14 +23,19 @@
                   <Image url="@../images/login.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="newBtn" fitHeight="20.0" fitWidth="20.0" layoutX="400.0" layoutY="10.0" onMouseClicked="#newArticle" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="uploadBtn" fitHeight="20.0" fitWidth="20.0" layoutX="400.0" layoutY="10.0" onMouseClicked="#uploadArticle" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
                <image>
-                  <Image url="@../images/add.png" />
+                  <Image url="@../images/upload.png" />
                </image>
             </ImageView>
             <ImageView fx:id="close" fitHeight="20.0" fitWidth="20.0" layoutX="460.0" layoutY="10.0" onMouseClicked="#closeApplication" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="newBtn" fitHeight="20.0" fitWidth="20.0" layoutX="370.0" layoutY="10.0" onMouseClicked="#newArticle" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/add.png" />
                </image>
             </ImageView>
          </children>

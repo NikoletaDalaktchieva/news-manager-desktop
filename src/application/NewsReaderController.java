@@ -3,26 +3,35 @@
  */
 package application;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.json.JsonObject;
 
 import application.news.Article;
 import application.news.Categories;
 import application.news.User;
+import application.utils.JsonArticle;
+import application.utils.exceptions.ErrorMalFormedArticle;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
 import javafx.collections.FXCollections;
@@ -48,6 +57,8 @@ public class NewsReaderController {
 
 	@FXML
 	private ImageView newBtn;
+	@FXML
+	private ImageView uploadBtn;
 
 	@FXML
 	private MFXComboBox<String> categories;
@@ -57,10 +68,10 @@ public class NewsReaderController {
 
 	private NewsReaderModel newsReaderModel = new NewsReaderModel();
 	private User usr;
-	
+
 	private String textSearch;
 	private String selectedCategory;
-	
+
 	// TODO add attributes and methods as needed
 
 	public NewsReaderController() {
@@ -78,6 +89,7 @@ public class NewsReaderController {
 			categories.getItems().add(c.toString());
 		}
 		categories.getSelectionModel().selectFirst();
+
 		refreshScreen();
 
 	}
@@ -109,7 +121,7 @@ public class NewsReaderController {
 	@FXML
 	void onLoginClick(MouseEvent event) throws IOException {
 		if (usr == null) {
-			openLoginPage();			
+			openLoginPage();
 		} else {
 			usr = null;
 			refreshScreen();
@@ -134,22 +146,29 @@ public class NewsReaderController {
 
 	@FXML
 	void newArticle(MouseEvent event) throws IOException {
+		openEditScreen(null);
+	}
+
+	void openEditScreen(Article article) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleEdit.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 
 		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
 		controller.setUsr(usr);
-		controller.setArticle(null);
+		controller.setArticle(article);
 		controller.setConnectionMannager(newsReaderModel.getConnectionManager());
 
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root1));
+		stage.setOnHidden(e -> refreshScreen());
 		stage.show();
 	}
 
 	void refreshScreen() {
+
 		refreshLoginBtn();
 		newBtn.setVisible(usr != null);
+		uploadBtn.setVisible(usr != null);
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
 
@@ -164,14 +183,12 @@ public class NewsReaderController {
 	}
 
 	private void refreshLoginBtn() {
-		if(usr == null) {
-			loginImage.setImage(new Image(getClass()
-			        .getResourceAsStream("/images/login.png")));
+		if (usr == null) {
+			loginImage.setImage(new Image(getClass().getResourceAsStream("/images/login.png")));
 		} else {
-			loginImage.setImage(new Image(getClass()
-			        .getResourceAsStream("/images/logout.png")));
+			loginImage.setImage(new Image(getClass().getResourceAsStream("/images/logout.png")));
 		}
-		
+
 	}
 
 	private Parent generateVRow(Article article) {
@@ -205,33 +222,47 @@ public class NewsReaderController {
 			return filterPredicate(a);
 		});
 	}
-	
+
 	@FXML
 	void onTextChange(KeyEvent event) {
 		filteredData.setPredicate(a -> {
 			textSearch = filterText.getText();
-			return filterPredicate(a);	
+			return filterPredicate(a);
 		});
 	}
-	
+
 	private boolean filterPredicate(Parent a) {
 		var title = ((Label) a.lookup("#title")).getText();
 		var category = ((Label) a.lookup("#category")).getText();
-		
+
 		return equalToSelectedCategoryPredicate(category) && containsTextSearchPredicate(title);
-		
+
 	}
 
 	private boolean equalToSelectedCategoryPredicate(String elementCategory) {
-		return selectedCategory.equals("All") ? true : elementCategory.equals(selectedCategory) ;
+		return selectedCategory.equals("All") ? true : elementCategory.equals(selectedCategory);
 	}
-	
+
 	private boolean containsTextSearchPredicate(String text) {
 		return notEmpty(textSearch) ? text.toLowerCase().contains(textSearch.toLowerCase()) : true;
 	}
 
-
 	private boolean notEmpty(String string) {
 		return string != null && !string.isEmpty() && !string.trim().equals("");
+	}
+
+	@FXML
+	void uploadArticle(MouseEvent event) throws IOException {
+		try {
+			File selectedFile = new FileChooser()
+					.showOpenDialog((Stage) ((Node) event.getSource()).getScene().getWindow());
+			Article article = JsonArticle.jsonToArticle(JsonArticle.readFile(selectedFile.getCanonicalPath()));
+			openEditScreen(article);
+		} catch (ErrorMalFormedArticle e) {
+			// TODO Auto-generated catch block
+			// TODO Niki error reading files
+			e.printStackTrace();
+		}
+
 	}
 }

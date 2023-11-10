@@ -226,6 +226,7 @@ public class ArticleEditController {
 			
 			//TODO NiKi Successful save message
 		} catch (IOException e) {
+			//TODO NiKi Fail message
 			e.printStackTrace();
 		}
 	}
