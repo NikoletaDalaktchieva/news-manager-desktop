@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="410.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ArticleDetailsController">
    <children>
       <Label layoutX="238.0" layoutY="80.0" text="Title:">
@@ -45,7 +44,10 @@
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="userId" layoutX="82.0" layoutY="6.0" />
+      <Label fx:id="userId" layoutX="82.0" layoutY="6.0">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Label>
       <Label fx:id="abstractBody" alignment="TOP_LEFT" layoutX="83.0" layoutY="194.0" prefHeight="161.0" prefWidth="383.0" wrapText="true">
          <font>
             <Font name="Book Antiqua" size="12.0" />

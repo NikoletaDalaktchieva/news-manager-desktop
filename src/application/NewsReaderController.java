@@ -140,6 +140,7 @@ public class NewsReaderController {
 		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
 		controller.setUsr(usr);
 		controller.setArticle(null);
+		controller.setConnectionMannager(newsReaderModel.getConnectionManager());
 
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root1));
@@ -179,7 +180,7 @@ public class NewsReaderController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ArticleCard.fxml"));
 			Parent root1 = loader.load();
 			ArticleCardControler controller = loader.<ArticleCardControler>getController();
-			controller.setData(article, usr);
+			controller.setData(article, usr, newsReaderModel.getConnectionManager(), this);
 			return root1;
 
 			// articlesVBox.getChildren().add(root1);

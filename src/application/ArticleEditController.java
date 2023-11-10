@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import serverConection.ConnectionManager;
+import serverConection.exceptions.ServerCommunicationError;
 
 /**
  * @author ÁngelLucas
@@ -84,7 +85,6 @@ public class ArticleEditController {
 
 	@FXML
 	void onImageClicked(MouseEvent event) {
-		System.out.println("click");
 		if (event.getClickCount() >= 2) {
 			Scene parentScene = ((Node) event.getSource()).getScene();
 			FXMLLoader loader = null;
@@ -128,7 +128,16 @@ public class ArticleEditController {
 			alert.showAndWait();
 			return false;
 		}
-//TODO prepare and send using connection.saveArticle( ...)
+
+		// TODO Niki fix if(!editingArticle.isModified()) return true;
+		// TODO prepare and send using connection.saveArticle( ...)
+		try {
+			connection.saveArticle(editingArticle.getEditedOriginal());
+		} catch (ServerCommunicationError e) {
+			// TODO Niki conntection error
+			e.printStackTrace();
+			return false;
+		}
 
 		return true;
 	}
@@ -231,9 +240,11 @@ public class ArticleEditController {
 		if (abstractBodyBtn.getText() == "Change to Abstract") {
 			abstractBody.setText(editingArticle.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
+			abstractBody.setPromptText("Body");
 		} else {
 			abstractBody.setText(editingArticle.getBodyText());
 			abstractBodyBtn.setText("Change to Abstract");
+			abstractBody.setPromptText("Abstract");
 		}
 	}
 

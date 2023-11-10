@@ -54,7 +54,7 @@
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton layoutX="160.0" layoutY="364.0" text="Save to File">
+      <MFXButton layoutX="160.0" layoutY="364.0" onAction="#saveToFile" text="Save to File">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
