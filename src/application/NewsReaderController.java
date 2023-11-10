@@ -108,7 +108,6 @@ public class NewsReaderController {
 		this.usr = usr;
 		// Reload articles
 		this.getData();
-		// TODO Update UI
 	}
 
 	@FXML
@@ -161,7 +160,6 @@ public class NewsReaderController {
 
 		refreshLoginBtn();
 		newBtn.setVisible(usr != null);
-		uploadBtn.setVisible(usr != null);
 		newsReaderModel.retrieveData();
 		ObservableList<Article> articles = newsReaderModel.getArticles();
 
