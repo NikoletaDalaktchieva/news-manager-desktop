@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 //import org.omg.CORBA.portable.InputStream;
 
 import application.news.Article;
-import application.news.Categories;
+import application.news.Category;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

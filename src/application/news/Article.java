@@ -37,7 +37,7 @@ public class Article {
 	private int idArticle = 0; //0 -> New Article, so don't exists in the BD
 	private int idImage = 0; //0 -> New Image, so don't exists in the BD
 	
-	private String  category = Categories.ALL.name();
+	private String  category = Category.ALL.name();
 	//if needBeSaved is true the article was modified by a set method or by a property 
 	private boolean needBeSaved = false;
 	/**

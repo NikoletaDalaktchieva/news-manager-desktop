@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import application.news.Article;
-import application.news.Categories;
+import application.news.Category;
 import application.news.User;
 import application.utils.JsonArticle;
 import application.utils.exceptions.ErrorMalFormedArticle;
@@ -78,7 +78,7 @@ public class NewsReaderController {
 	}
 
 	private void getData() {
-		for (Categories c : Categories.values()) {
+		for (Category c : Category.values()) {
 			categories.getItems().add(c.toString());
 		}
 		categories.getSelectionModel().selectFirst();
@@ -134,7 +134,7 @@ public class NewsReaderController {
 			refreshScreen();
 		});
 		stage.setScene(new Scene(root1));
-		stage.show();
+		stage.showAndWait();
 	}
 
 	@FXML
@@ -154,7 +154,7 @@ public class NewsReaderController {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root1));
 		stage.setOnHidden(e -> refreshScreen());
-		stage.show();
+		stage.showAndWait();
 	}
 
 	void refreshScreen() {
