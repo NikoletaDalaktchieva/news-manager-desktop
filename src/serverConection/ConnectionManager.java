@@ -228,7 +228,7 @@ public class ConnectionManager {
 	 * @throws ServerCommunicationError
 	 * @throws IOException 
 	 */
-	public List<Article> getArticles() throws ServerCommunicationError, IOException {
+	public List<Article> getArticles() throws ServerCommunicationError {
 		List<Article> result = new ArrayList<>();
 		String parameters =  "";
 		String request = serviceUrl + "articles"; 
@@ -337,7 +337,6 @@ public class ConnectionManager {
 			try (InputStream is = connection.getInputStream(); JsonReader rdr = Json.createReader(is)) {
 				return rdr.readObject();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				Logger.getGlobal().log(Level.SEVERE, e.getMessage());
 			}
 		}//IF
