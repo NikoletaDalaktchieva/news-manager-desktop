@@ -85,6 +85,8 @@ public class ArticleEditController {
 	 * User whose is editing the article
 	 */
 	private User usr;
+	
+	private boolean bodySwitch = false;
 
 	@FXML
 	void onImageClicked(MouseEvent event) {
@@ -180,18 +182,22 @@ public class ArticleEditController {
 	
 	@FXML
 	void changeAbstractBody(ActionEvent event) {
-		// TODO Niki better codde
-		if (abstractBodyBtn.getText() == "Change to Abstract") {
+		if (bodySwitch) {
+			bodySwitch = false;
+			editingArticle.setBodyText(abstractBody.getText());
 			abstractBody.setText(editingArticle.getAbstractText());
 			webViewChangeText(editingArticle.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
 			abstractBody.setPromptText("Abstract");
-		} else {
-			abstractBody.setText(editingArticle.getBodyText());
-			webViewChangeText(editingArticle.getBodyText());
-			abstractBodyBtn.setText("Change to Abstract");
-			abstractBody.setPromptText("Body");
+			return;
 		}
+		
+		bodySwitch = true;	
+		editingArticle.setAbstractText(abstractBody.getText());
+		abstractBody.setText(editingArticle.getBodyText());
+		webViewChangeText(editingArticle.getBodyText());
+		abstractBodyBtn.setText("Change to Abstract");
+		abstractBody.setPromptText("Body");
 	}
 
 	@FXML
@@ -236,8 +242,11 @@ public class ArticleEditController {
 		editingArticle.setTitle(titleText);
 		editingArticle.setSubtitle(subtitle.getText());
 		editingArticle.setCategory(category);
-//		editingArticle.setBodyText();
-//		editingArticle.setAbstractText();
+		if (bodySwitch) {
+			editingArticle.setBodyText(abstractBody.getText());
+		} else {
+			editingArticle.setAbstractText(abstractBody.getText());
+		}
 		
 		editingArticle.commit();
 		return true;
