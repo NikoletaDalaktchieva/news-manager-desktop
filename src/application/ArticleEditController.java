@@ -72,6 +72,9 @@ public class ArticleEditController {
 	@FXML
 	private MFXButton textTypeBtn;
 
+	@FXML
+	private MFXButton sendAndBack;
+
 	/**
 	 * Connection used to send article to server after editing process
 	 */
@@ -85,7 +88,7 @@ public class ArticleEditController {
 	 * User whose is editing the article
 	 */
 	private User usr;
-	
+
 	private boolean bodySwitch = false;
 
 	@FXML
@@ -134,8 +137,11 @@ public class ArticleEditController {
 	 */
 	void setUsr(User usr) {
 		this.usr = usr;
-		if (usr == null)
+		if (usr == null) {
+			sendAndBack.setVisible(false);
 			return;
+		}
+
 		userId.setText(" for " + usr.getLogin());
 
 	}
@@ -179,7 +185,6 @@ public class ArticleEditController {
 		image.setImage(article.getImageData());
 	}
 
-	
 	@FXML
 	void changeAbstractBody(ActionEvent event) {
 		if (bodySwitch) {
@@ -191,8 +196,8 @@ public class ArticleEditController {
 			abstractBody.setPromptText("Abstract");
 			return;
 		}
-		
-		bodySwitch = true;	
+
+		bodySwitch = true;
 		editingArticle.setAbstractText(abstractBody.getText());
 		abstractBody.setText(editingArticle.getBodyText());
 		webViewChangeText(editingArticle.getBodyText());
@@ -217,7 +222,7 @@ public class ArticleEditController {
 		if (!commitChanges()) {
 			return false;
 		}
-		
+
 		// TODO Niki fix if(!editingArticle.isModified()) return true;
 		// TODO prepare and send using connection.saveArticle( ...)
 		try {
@@ -229,13 +234,13 @@ public class ArticleEditController {
 
 		return true;
 	}
-	
+
 	private boolean commitChanges() {
 		String titleText = title.getText();
 		Category category = Category.getByName(categories.getSelectionModel().getSelectedItem());
 		if (titleText == null || category == null || titleText.equals("") || category == Category.ALL) {
-			Alert alert = new Alert(AlertType.ERROR, "Article did not pass validation! Title and categoy are mandatory!",
-					ButtonType.OK);
+			Alert alert = new Alert(AlertType.ERROR,
+					"Article did not pass validation! Title and categoy are mandatory!", ButtonType.OK);
 			alert.showAndWait();
 			return false;
 		}
@@ -247,11 +252,11 @@ public class ArticleEditController {
 		} else {
 			editingArticle.setAbstractText(abstractBody.getText());
 		}
-		
+
 		editingArticle.commit();
 		return true;
 	}
-	
+
 	@FXML
 	void back(ActionEvent event) {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -262,7 +267,7 @@ public class ArticleEditController {
 	void saveToFile(ActionEvent event) {
 		write();
 	}
-	
+
 	/**
 	 * Save an article to a file in a json format Article must have a title
 	 */
@@ -281,7 +286,6 @@ public class ArticleEditController {
 			new Alert(AlertType.ERROR, "File saving problem!").show();
 		}
 	}
-
 
 	@FXML
 	void changeTextType(ActionEvent event) {
