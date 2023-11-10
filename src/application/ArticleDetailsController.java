@@ -3,13 +3,21 @@
  */
 package application;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.json.JsonObject;
+
 import application.news.Article;
 import application.news.User;
+import application.utils.JsonArticle;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -97,4 +105,19 @@ public class ArticleDetailsController {
 		System.out.println(text);
 		webView.getEngine().loadContent(text);
 	}
+
+	@FXML
+	void saveToFile(ActionEvent event) {
+		String name = article.getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
+		String fileName = "saveNews//" + name + ".news";
+		JsonObject data = JsonArticle.articleToJson(article);
+		try (FileWriter file = new FileWriter(fileName)) {
+			file.write(data.toString());
+			file.flush();
+			new Alert(AlertType.INFORMATION, "File saved successfully!").show();
+		} catch (IOException e) {
+			new Alert(AlertType.ERROR, "File saving problem!").show();
+		}
+	}
+
 }

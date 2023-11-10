@@ -65,5 +65,10 @@
          </children>
       </HBox>
       <WebView fx:id="webView" layoutX="80.0" layoutY="190.0" prefHeight="160.0" prefWidth="400.0" />
+      <MFXButton layoutX="76.0" layoutY="364.0" onAction="#saveToFile" text="Save to File">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>

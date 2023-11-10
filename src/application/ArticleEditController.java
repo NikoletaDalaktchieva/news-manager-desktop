@@ -205,25 +205,7 @@ public class ArticleEditController {
 		image.setImage(article.getImageData());
 	}
 
-	/**
-	 * Save an article to a file in a json format Article must have a title
-	 */
-	private void write() {
-		// TODO Consolidate all changes
-		this.editingArticle.commit();
-		// Removes special characters not allowed for filenames
-		String name = this.getArticle().getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
-		String fileName = "saveNews//" + name + ".news";
-		JsonObject data = JsonArticle.articleToJson(this.getArticle());
-		try (FileWriter file = new FileWriter(fileName)) {
-			file.write(data.toString());
-			file.flush();
-			new Alert(AlertType.INFORMATION, "File saved successfully!").show();
-		} catch (IOException e) {
-			new Alert(AlertType.ERROR, "File saving problem!").show();
-		}
-	}
-
+	
 	@FXML
 	void back(ActionEvent event) {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -257,6 +239,26 @@ public class ArticleEditController {
 	void saveToFile(ActionEvent event) {
 		write();
 	}
+	
+	/**
+	 * Save an article to a file in a json format Article must have a title
+	 */
+	private void write() {
+		// TODO Consolidate all changes
+		this.editingArticle.commit();
+		// Removes special characters not allowed for filenames
+		String name = this.getArticle().getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
+		String fileName = "saveNews//" + name + ".news";
+		JsonObject data = JsonArticle.articleToJson(this.getArticle());
+		try (FileWriter file = new FileWriter(fileName)) {
+			file.write(data.toString());
+			file.flush();
+			new Alert(AlertType.INFORMATION, "File saved successfully!").show();
+		} catch (IOException e) {
+			new Alert(AlertType.ERROR, "File saving problem!").show();
+		}
+	}
+
 
 	@FXML
 	void changeTextType(ActionEvent event) {
