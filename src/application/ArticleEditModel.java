@@ -4,7 +4,7 @@
 package application;
 
 import application.news.Article;
-import application.news.Categories;
+import application.news.Category;
 import application.news.User;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
@@ -174,8 +174,8 @@ class ArticleEditModel {
 	 * 
 	 * @return category from the edited article
 	 */
-	public Categories getCategory() {
-		return Categories.valueOf(edited.getCategory().toUpperCase());
+	public Category getCategory() {
+		return Category.valueOf(edited.getCategory().toUpperCase());
 	}
 
 	/**
@@ -201,7 +201,34 @@ class ArticleEditModel {
 	 * 
 	 * @param category new category for edited article
 	 */
-	public void setCategory(Categories category) {
+	public void setTitle(String title) {
+		this.bModified = true;
+		edited.setTitle(title);
+	}
+
+
+	public void setSubtitle(String subtitle) {
+		this.bModified = true;
+		edited.setSubtitle(subtitle);
+	}
+
+	public void setBodyText(String bodyText) {
+		this.bModified = true;
+		edited.setBodyText(bodyText);
+	}
+	
+	public void setAbstractText(String abstractText) {
+		this.bModified = true;
+		edited.setAbstractText(abstractText);
+	}
+	
+
+	/**
+	 * Set category to the edited article
+	 * 
+	 * @param category new category for edited article
+	 */
+	public void setCategory(Category category) {
 		this.bModified = true;
 		edited.setCategory(category.toString());
 	}
@@ -269,7 +296,7 @@ class ArticleEditModel {
 		return bModified;
 	}
 
-	public Article getEditedOriginal() {
+	public Article getEdited() {
 		return edited;
 	}
 

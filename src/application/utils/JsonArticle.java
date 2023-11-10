@@ -100,10 +100,11 @@ public class JsonArticle {
 		String deleted = articleData.getString(keys.get("Deleted"), "0");
 		Boolean isDeleted = deleted.equals("1");
 		// Boolean isPublish = articleData.getBoolean(keys.get("Publish"));
-		if (title.equals("") || category.equals("")) {
-			// Not is a valid news
-			throw new ErrorMalFormedArticle((title.equals("") ? "title " : "category ") + "is requiered");
-		}
+		//TODO: uncomment
+//		if (title.equals("") || category.equals("")) {
+//			// Not is a valid news
+//			throw new ErrorMalFormedArticle((title.equals("") ? "title " : "category ") + "is requiered");
+//		}
 		int idUser = -1;
 		if (articleData.containsKey(keys.get("idUser"))) {
 			String idUserAux = articleData.getString(keys.get("idUser"));
