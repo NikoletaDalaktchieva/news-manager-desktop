@@ -4,10 +4,7 @@
 package application;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-
-import javax.json.JsonObject;
 
 import application.news.Article;
 import application.news.Categories;
@@ -17,15 +14,19 @@ import application.utils.exceptions.ErrorMalFormedArticle;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -34,9 +35,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 /**
  * @author ÁngelLucas
@@ -72,10 +70,7 @@ public class NewsReaderController {
 	private String textSearch;
 	private String selectedCategory;
 
-	// TODO add attributes and methods as needed
-
 	public NewsReaderController() {
-		// TODO
 		// Uncomment next sentence to use data from server instead dummy data
 		newsReaderModel.setDummyData(false);
 		// Get text Label
@@ -83,8 +78,6 @@ public class NewsReaderController {
 	}
 
 	private void getData() {
-		// TODO retrieve data and update UI
-		// The method newsReaderModel.retrieveData() can be used to retrieve data
 		for (Categories c : Categories.values()) {
 			categories.getItems().add(c.toString());
 		}
@@ -202,7 +195,6 @@ public class NewsReaderController {
 
 			// articlesVBox.getChildren().add(root1);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -259,8 +251,7 @@ public class NewsReaderController {
 			Article article = JsonArticle.jsonToArticle(JsonArticle.readFile(selectedFile.getCanonicalPath()));
 			openEditScreen(article);
 		} catch (ErrorMalFormedArticle e) {
-			// TODO Auto-generated catch block
-			// TODO Niki error reading files
+			new Alert(AlertType.ERROR, "Fail problem!").showAndWait();
 			e.printStackTrace();
 		}
 

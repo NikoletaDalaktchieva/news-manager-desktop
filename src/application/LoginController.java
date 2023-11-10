@@ -3,7 +3,6 @@ package application;
 import application.news.User;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import serverConection.ConnectionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,9 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import serverConection.ConnectionManager;
 
 public class LoginController {
-//TODO Add all attribute and methods as needed 
 	@FXML
 	private AnchorPane loginWindow;
 
@@ -55,8 +54,7 @@ public class LoginController {
 		if (validateFields() && validateUser()) {
 			this.closeWindow(event);
 		} else {
-			Alert alert = new Alert(AlertType.ERROR, "Login failed");
-			alert.showAndWait();
+			new Alert(AlertType.ERROR, "Login failed").showAndWait();
 		}
 	}
 

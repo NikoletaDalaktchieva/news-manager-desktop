@@ -6,7 +6,6 @@ package application;
 import application.news.Article;
 import application.news.Categories;
 import application.news.User;
-import javafx.beans.property.Property;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 

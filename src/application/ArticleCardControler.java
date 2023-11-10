@@ -8,10 +8,11 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
@@ -100,7 +101,7 @@ public class ArticleCardControler {
 			connection.deleteArticle(article.getIdArticle());
 			newsReaderControllerl.refreshScreen();
 		} catch (ServerCommunicationError e) {
-			// TODO Niki connection problem
+			new Alert(AlertType.ERROR, "Connection problem!").showAndWait();
 			e.printStackTrace();
 		}
 	}

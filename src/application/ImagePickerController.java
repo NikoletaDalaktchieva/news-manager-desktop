@@ -4,7 +4,6 @@ package application;
 //import com.jfoenix.controls.JFXTextField;
 
 import java.io.File;
-
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
@@ -15,9 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImagePickerController {
 

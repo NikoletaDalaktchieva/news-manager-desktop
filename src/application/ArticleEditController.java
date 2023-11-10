@@ -9,11 +9,8 @@ import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 
@@ -88,7 +85,6 @@ public class ArticleEditController {
 	 * User whose is editing the article
 	 */
 	private User usr;
-	// TODO add attributes and methods as needed
 
 	@FXML
 	void onImageClicked(MouseEvent event) {
@@ -111,7 +107,7 @@ public class ArticleEditController {
 				Image image = controller.getImage();
 				if (image != null) {
 					editingArticle.setImage(image);
-					// TODO Update image on UI
+					this.image.setImage(image);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -141,8 +137,7 @@ public class ArticleEditController {
 		try {
 			connection.saveArticle(editingArticle.getEditedOriginal());
 		} catch (ServerCommunicationError e) {
-			// TODO Niki conntection error
-			e.printStackTrace();
+			new Alert(AlertType.INFORMATION, "Conntection problem!").showAndWait();
 			return false;
 		}
 
@@ -157,8 +152,6 @@ public class ArticleEditController {
 	 */
 	void setConnectionMannager(ConnectionManager connection) {
 		this.connection = connection;
-		// TODO enable send and back button
-
 	}
 
 	/**
@@ -167,7 +160,6 @@ public class ArticleEditController {
 	 */
 	void setUsr(User usr) {
 		this.usr = usr;
-		// TODO Update UI and controls
 		if (usr == null)
 			return;
 		userId.setText(" for " + usr.getLogin());
@@ -193,10 +185,6 @@ public class ArticleEditController {
 	 * @param article the article to set
 	 */
 	void setArticle(Article article) {
-
-		// TODO Niki not working
-		// category.getEditor().setFont(Font.font("Book Antiqua", FontWeight.NORMAL,
-		// 14));
 		for (Categories c : Categories.values()) {
 			if (c == Categories.ALL)
 				continue;
@@ -204,7 +192,6 @@ public class ArticleEditController {
 		}
 
 		this.editingArticle = (article != null) ? new ArticleEditModel(article) : new ArticleEditModel(usr);
-		// TODO update UI
 		if (article == null)
 			return;
 		title.setText(article.getTitle());
@@ -231,11 +218,9 @@ public class ArticleEditController {
 		try (FileWriter file = new FileWriter(fileName)) {
 			file.write(data.toString());
 			file.flush();
-
-			// TODO NiKi Successful save message
+			new Alert(AlertType.INFORMATION, "File saved successfully!").show();
 		} catch (IOException e) {
-			// TODO NiKi Fail message
-			e.printStackTrace();
+			new Alert(AlertType.ERROR, "File saving problem!").show();
 		}
 	}
 
@@ -282,7 +267,7 @@ public class ArticleEditController {
 		} else {
 			textTypeBtn.setText("Text");
 			webView.setVisible(false);
-			abstractBody.setVisible(ture);
+			abstractBody.setVisible(true);
 		}
 	}
 

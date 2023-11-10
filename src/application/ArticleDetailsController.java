@@ -9,11 +9,8 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.TextFlow;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -22,8 +19,6 @@ import javafx.stage.Stage;
  *
  */
 public class ArticleDetailsController {
-	// TODO add attributes and methods as needed
-
 	@FXML
 	private Label category;
 
@@ -63,7 +58,6 @@ public class ArticleDetailsController {
 		if (usr == null) {
 			return; // Not logged user
 		}
-		// TODO Update UI information
 		userId.setText(" for " + usr.getLogin());
 	}
 
@@ -72,7 +66,6 @@ public class ArticleDetailsController {
 	 */
 	void setArticle(Article article) {
 		this.article = article;
-		// TODO complete this method
 		title.setText(article.getTitle());
 		subtitle.setText(article.getSubtitle());
 		category.setText(article.getCategory());
