@@ -34,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -67,6 +68,12 @@ public class ArticleEditController {
 
 	@FXML
 	private Label userId;
+
+	@FXML
+	private WebView webView;
+
+	@FXML
+	private MFXButton textTypeBtn;
 
 	/**
 	 * Connection used to send article to server after editing process
@@ -206,6 +213,7 @@ public class ArticleEditController {
 		// TODO Niki Много лош подход, така ли го искаме?
 		categories.getSelectionModel().selectItem(article.getCategory());
 		abstractBody.setText(article.getAbstractText());
+		webViewChangeText(abstractBody.getText());
 		abstractBodyBtn.setText("Change to Body");
 		image.setImage(article.getImageData());
 	}
@@ -223,10 +231,10 @@ public class ArticleEditController {
 		try (FileWriter file = new FileWriter(fileName)) {
 			file.write(data.toString());
 			file.flush();
-			
-			//TODO NiKi Successful save message
+
+			// TODO NiKi Successful save message
 		} catch (IOException e) {
-			//TODO NiKi Fail message
+			// TODO NiKi Fail message
 			e.printStackTrace();
 		}
 	}
@@ -242,12 +250,14 @@ public class ArticleEditController {
 		// TODO Niki better codde
 		if (abstractBodyBtn.getText() == "Change to Abstract") {
 			abstractBody.setText(editingArticle.getAbstractText());
+			webViewChangeText(editingArticle.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
-			abstractBody.setPromptText("Body");
+			abstractBody.setPromptText("Abstract");
 		} else {
 			abstractBody.setText(editingArticle.getBodyText());
+			webViewChangeText(editingArticle.getBodyText());
 			abstractBodyBtn.setText("Change to Abstract");
-			abstractBody.setPromptText("Abstract");
+			abstractBody.setPromptText("Body");
 		}
 	}
 
@@ -261,6 +271,23 @@ public class ArticleEditController {
 	@FXML
 	void saveToFile(ActionEvent event) {
 		write();
+	}
+
+	@FXML
+	void changeTextType(ActionEvent event) {
+		if (textTypeBtn.getText().equals("Text")) {
+			textTypeBtn.setText("HTML");
+			webView.setVisible(true);
+			abstractBody.setVisible(false);
+		} else {
+			textTypeBtn.setText("Text");
+			webView.setVisible(false);
+			abstractBody.setVisible(ture);
+		}
+	}
+
+	void webViewChangeText(String text) {
+		webView.getEngine().loadContent(text);
 	}
 
 }
