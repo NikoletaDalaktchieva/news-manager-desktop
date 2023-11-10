@@ -45,7 +45,7 @@
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="userId" layoutX="82.0" layoutY="6.0">
+      <Label fx:id="userId" layoutX="79.0" layoutY="6.0" prefHeight="17.0" prefWidth="122.0">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font></Label>
