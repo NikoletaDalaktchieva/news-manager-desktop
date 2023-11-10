@@ -223,6 +223,8 @@ public class ArticleEditController {
 		try (FileWriter file = new FileWriter(fileName)) {
 			file.write(data.toString());
 			file.flush();
+			
+			//TODO NiKi Successful save message
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -253,6 +255,11 @@ public class ArticleEditController {
 		if (send()) {
 			back(event);
 		}
+	}
+
+	@FXML
+	void saveToFile(ActionEvent event) {
+		write();
 	}
 
 }
