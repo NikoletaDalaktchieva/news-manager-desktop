@@ -93,7 +93,8 @@ public class ArticleEditController {
 	 */
 	private User usr;
 
-	private boolean bodySwitch = false;
+	private boolean bodySwitch;
+	private boolean htmlSwitch;
 
 	@FXML
 	void onImageClicked(MouseEvent event) {
@@ -226,9 +227,7 @@ public class ArticleEditController {
 		if (!commitChanges()) {
 			return false;
 		}
-
-		// TODO Niki fix if(!editingArticle.isModified()) return true;
-		// TODO prepare and send using connection.saveArticle( ...)
+		
 		try {
 			connection.saveArticle(getArticle());
 		} catch (ServerCommunicationError e) {
@@ -252,9 +251,9 @@ public class ArticleEditController {
 		editingArticle.setSubtitle(subtitle.getText());
 		editingArticle.setCategory(category);
 		if (bodySwitch) {
-			editingArticle.setBodyText(abstractBody.getText());
+			editingArticle.setBodyText(htmlSwitch ? htmlEditor.getHtmlText() : abstractBody.getText());
 		} else {
-			editingArticle.setAbstractText(abstractBody.getText());
+			editingArticle.setAbstractText(htmlSwitch ? htmlEditor.getHtmlText() : abstractBody.getText());
 		}
 
 		editingArticle.commit();
@@ -276,7 +275,6 @@ public class ArticleEditController {
 	 * Save an article to a file in a json format Article must have a title
 	 */
 	private void write() {
-		// TODO Consolidate all changes
 		this.editingArticle.commit();
 		// Removes special characters not allowed for filenames
 		String name = this.getArticle().getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
@@ -293,15 +291,18 @@ public class ArticleEditController {
 
 	@FXML
 	void changeTextType(ActionEvent event) {
-		if (textTypeBtn.getText().equals("Text")) {
+		if (htmlSwitch) {
 			textTypeBtn.setText("HTML");
-			htmlEditor.setVisible(true);
-			abstractBody.setVisible(false);
-		} else {
-			textTypeBtn.setText("Text");
 			htmlEditor.setVisible(false);
 			abstractBody.setVisible(true);
+			abstractBody.setText(htmlEditor.getHtmlText());
+		} else {
+			textTypeBtn.setText("Text");
+			htmlEditor.setVisible(true);
+			abstractBody.setVisible(false);
+			htmlEditor.setHtmlText(abstractBody.getText());
 		}
+		htmlSwitch = !htmlSwitch;
 	}
 
 }

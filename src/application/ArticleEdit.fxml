@@ -58,17 +58,17 @@
             <ImageView fx:id="image" fitHeight="100.0" fitWidth="180.0" onMouseClicked="#onImageClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <MFXButton fx:id="sendAndBack" layoutX="188.0" layoutY="376.0" onAction="#sendAndBack" styleClass="mainBtn" text="Send &amp; back">
+      <MFXButton fx:id="sendAndBack" layoutX="155.0" layoutY="376.0" onAction="#sendAndBack" styleClass="mainBtn" text="Send &amp; back">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton layoutX="85.0" layoutY="376.0" onAction="#saveToFile" styleClass="mainBtn" text="Save to File">
+      <MFXButton layoutX="70.0" layoutY="376.0" onAction="#saveToFile" styleClass="mainBtn" text="Save to File">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="textTypeBtn" layoutX="363.0" layoutY="376.0" onAction="#changeTextType" prefHeight="25.0" prefWidth="49.0" styleClass="secondaryBtn" text="Text">
+      <MFXButton fx:id="textTypeBtn" layoutX="342.0" layoutY="376.0" onAction="#changeTextType" prefHeight="25.0" prefWidth="70.0" styleClass="secondaryBtn" text="HTML">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
