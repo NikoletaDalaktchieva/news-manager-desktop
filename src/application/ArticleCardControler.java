@@ -69,14 +69,16 @@ public class ArticleCardControler {
 	@FXML
 	void openArticle(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleDetails.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
+		Parent root = (Parent) fxmlLoader.load();
 
 		ArticleDetailsController controller = fxmlLoader.<ArticleDetailsController>getController();
 		controller.setUsr(usr);
 		controller.setArticle(connection.getFullArticle(article.getIdArticle()));
 
 		Stage stage = new Stage();
-		stage.setScene(new Scene(root1));
+		var scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setScene(scene);
 		stage.show();
 
 	}
@@ -84,7 +86,7 @@ public class ArticleCardControler {
 	@FXML
 	void editArticle(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleEdit.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
+		Parent root = (Parent) fxmlLoader.load();
 
 		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
 		controller.setUsr(usr);
@@ -92,7 +94,9 @@ public class ArticleCardControler {
 		controller.setConnectionMannager(connection);
 
 		Stage stage = new Stage();
-		stage.setScene(new Scene(root1));
+		var scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setScene(scene);
 		stage.setOnHiding(ev -> newsReaderControllerl.refreshScreen());
 		stage.show();
 	}

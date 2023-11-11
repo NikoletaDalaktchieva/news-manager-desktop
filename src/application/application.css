@@ -1,16 +1,20 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 
-#header, #openBtn {
+#header {
 	-fx-background-color: #663cb2;
 	-fx-text-fill: #FFFFFF;
 }
+.secondaryBtn {
+	-fx-background-color: #663cb2;
+	-fx-text-fill: #FFFFFF;
+} 
 
-#editBtn {
+.mainBtn {
 	-fx-background-color: #fdd655;
 }
 
-#deleteBtn{
+.warnBtn{
 	-fx-background-color: #ef403e;
 	-fx-text-fill: #FFFFFF;	
 }

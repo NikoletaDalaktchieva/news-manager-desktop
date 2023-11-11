@@ -122,7 +122,7 @@ public class NewsReaderController {
 
 	void openLoginPage() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
+		Parent root = (Parent) fxmlLoader.load();
 
 		LoginController controller = fxmlLoader.<LoginController>getController();
 		controller.sendData(this.newsReaderModel.getConnectionManager(), this.usr);
@@ -132,7 +132,9 @@ public class NewsReaderController {
 			setUsr(controller.getLoggedUsr());
 			refreshScreen();
 		});
-		stage.setScene(new Scene(root1));
+		var scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setScene(scene);
 		stage.showAndWait();
 	}
 
@@ -143,7 +145,7 @@ public class NewsReaderController {
 
 	void openEditScreen(Article article) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ArticleEdit.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
+		Parent root = (Parent) fxmlLoader.load();
 
 		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
 		controller.setUsr(usr);
@@ -151,7 +153,9 @@ public class NewsReaderController {
 		controller.setConnectionMannager(newsReaderModel.getConnectionManager());
 
 		Stage stage = new Stage();
-		stage.setScene(new Scene(root1));
+		var scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setScene(scene);
 		stage.setOnHidden(e -> refreshScreen());
 		stage.showAndWait();
 	}

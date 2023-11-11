@@ -38,12 +38,12 @@
             <Font name="Book Antiqua" size="12.0" />
          </font></Label>
       <TextArea fx:id="abstractBody" layoutX="42.0" layoutY="151.0" prefHeight="219.0" prefWidth="488.0" promptText="Abstract" />
-      <MFXButton layoutX="21.0" layoutY="376.0" onAction="#back" text="Back">
+      <MFXButton layoutX="21.0" layoutY="376.0" onAction="#back" styleClass="warnBtn" text="Back">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="abstractBodyBtn" layoutX="418.0" layoutY="376.0" onAction="#changeAbstractBody" prefHeight="25.0" prefWidth="138.0" text="Chanage to Body">
+      <MFXButton fx:id="abstractBodyBtn" layoutX="418.0" layoutY="376.0" onAction="#changeAbstractBody" prefHeight="25.0" prefWidth="138.0" styleClass="secondaryBtn" text="Chanage to Body">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
@@ -58,17 +58,17 @@
             <ImageView fx:id="image" fitHeight="100.0" fitWidth="180.0" onMouseClicked="#onImageClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <MFXButton fx:id="sendAndBack" layoutX="155.0" layoutY="376.0" onAction="#sendAndBack" text="Send &amp; back">
+      <MFXButton fx:id="sendAndBack" layoutX="188.0" layoutY="376.0" onAction="#sendAndBack" styleClass="mainBtn" text="Send &amp; back">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton layoutX="71.0" layoutY="376.0" onAction="#saveToFile" text="Save to File">
+      <MFXButton layoutX="85.0" layoutY="376.0" onAction="#saveToFile" styleClass="mainBtn" text="Save to File">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="textTypeBtn" layoutX="366.0" layoutY="376.0" onAction="#changeTextType" prefHeight="25.0" prefWidth="49.0" text="Text">
+      <MFXButton fx:id="textTypeBtn" layoutX="363.0" layoutY="376.0" onAction="#changeTextType" prefHeight="25.0" prefWidth="49.0" styleClass="secondaryBtn" text="Text">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>

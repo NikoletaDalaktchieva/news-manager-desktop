@@ -49,12 +49,12 @@
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font></Label>
-      <MFXButton layoutX="24.0" layoutY="364.0" onAction="#back" text="Back">
+      <MFXButton layoutX="24.0" layoutY="364.0" onAction="#back" styleClass="warnBtn" text="Back">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="abstractBodyBtn" layoutX="397.0" layoutY="364.0" onAction="#changeAbstractBody" prefHeight="25.0" prefWidth="138.0" text="Chanage to Abstract">
+      <MFXButton fx:id="abstractBodyBtn" layoutX="397.0" layoutY="364.0" onAction="#changeAbstractBody" prefHeight="25.0" prefWidth="138.0" styleClass="secondaryBtn" text="Chanage to Abstract">
          <font>
             <Font name="Book Antiqua" size="12.0" />
          </font>
