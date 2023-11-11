@@ -275,7 +275,7 @@ public class ArticleEditController {
 	 * Save an article to a file in a json format Article must have a title
 	 */
 	private void write() {
-		this.editingArticle.commit();
+		commitChanges();
 		// Removes special characters not allowed for filenames
 		String name = this.getArticle().getTitle().replaceAll("\\||/|\\\\|:|\\?", "");
 		String fileName = "saveNews//" + name + ".news";

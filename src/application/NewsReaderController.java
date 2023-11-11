@@ -194,8 +194,6 @@ public class NewsReaderController {
 			ArticleCardControler controller = loader.<ArticleCardControler>getController();
 			controller.setData(article, usr, newsReaderModel.getConnectionManager(), this);
 			return root1;
-
-			// articlesVBox.getChildren().add(root1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
