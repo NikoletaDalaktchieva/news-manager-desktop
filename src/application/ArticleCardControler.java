@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import application.news.Article;
 import application.news.User;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import serverConection.ConnectionManager;
@@ -98,11 +100,22 @@ public class ArticleCardControler {
 	@FXML
 	void deleteArticle(ActionEvent event) {
 		try {
+			if (!confirmDelete())
+				return;
 			connection.deleteArticle(article.getIdArticle());
 			newsReaderControllerl.refreshScreen();
 		} catch (ServerCommunicationError e) {
 			new Alert(AlertType.ERROR, "Connection problem!").showAndWait();
 			e.printStackTrace();
 		}
+	}
+
+	private boolean confirmDelete() {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to delete the article?");
+		Optional<ButtonType> buttonType = alert.showAndWait();
+		if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
+			return true;
+		}
+		return false;
 	}
 }
