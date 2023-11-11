@@ -251,7 +251,7 @@ public class NewsReaderController {
 			Article article = JsonArticle.jsonToArticle(JsonArticle.readFile(selectedFile.getCanonicalPath()));
 			openEditScreen(article);
 		} catch (ErrorMalFormedArticle e) {
-			new Alert(AlertType.ERROR, "Fail problem!").showAndWait();
+			new Alert(AlertType.ERROR, "File problem!").showAndWait();
 			e.printStackTrace();
 		}
 

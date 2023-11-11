@@ -4,14 +4,6 @@
 package application;
 
 import java.io.FileWriter;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 import javax.json.JsonObject;
@@ -20,19 +12,24 @@ import application.news.Article;
 import application.news.Category;
 import application.news.User;
 import application.utils.JsonArticle;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.HTMLEditor;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -66,9 +63,6 @@ public class ArticleEditController {
 
 	@FXML
 	private Label userId;
-
-//	@FXML
-//	private WebView webView;
 
 	@FXML
 	private MFXButton textTypeBtn;
@@ -182,7 +176,6 @@ public class ArticleEditController {
 		title.setText(article.getTitle());
 		subtitle.setText(article.getSubtitle());
 
-		// TODO Niki Много лош подход, така ли го искаме?
 		categories.getSelectionModel().selectItem(article.getCategory());
 		abstractBody.setText(article.getAbstractText());
 		htmlEditor.setHtmlText(abstractBody.getText());

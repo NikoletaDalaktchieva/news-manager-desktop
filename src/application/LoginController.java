@@ -26,6 +26,9 @@ public class LoginController {
 
 	private User loggedUsr = null;
 
+	private static final String RED_BORDER = "-fx-border-color: red ; -fx-border-width: 1px ; -fx-border-radius: 3px;";
+	private static final String BLACK_BORDER = "-fx-border-color: black ; -fx-border-width: 0px ; -fx-border-radius: 3px;";
+
 	public LoginController() {
 		// Uncomment next sentence to use data from server instead dummy data
 		this.loginModel.setDummyData(false);
@@ -48,9 +51,6 @@ public class LoginController {
 
 	@FXML
 	void login(ActionEvent event) {
-		// TODO Niki Remove
-		userId.setText("DEV_TEAM_01");
-		password.setText("123501@3");
 		if (validateFields() && validateUser()) {
 			this.closeWindow(event);
 		} else {
@@ -60,15 +60,15 @@ public class LoginController {
 
 	private boolean validateFields() {
 		if (userId.getText().isEmpty()) {
-			userId.setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-border-radius: 3px;");
+			userId.setStyle(RED_BORDER);
 		} else {
-			userId.setStyle("-fx-border-color: black ; -fx-border-width: 0px ; -fx-border-radius: 3px;");
+			userId.setStyle(BLACK_BORDER);
 		}
 
 		if (password.getText().isEmpty()) {
-			password.setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-border-radius: 3px;");
+			password.setStyle(RED_BORDER);
 		} else {
-			password.setStyle("-fx-border-color: black ; -fx-border-width: 0px ; -fx-border-radius: 3px;");
+			password.setStyle(BLACK_BORDER);
 		}
 
 		return !userId.getText().isEmpty() && !password.getText().isEmpty();

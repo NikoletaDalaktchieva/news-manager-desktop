@@ -3,21 +3,13 @@
  */
 package application;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.json.JsonObject;
-
 import application.news.Article;
 import application.news.User;
-import application.utils.JsonArticle;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -49,11 +41,6 @@ public class ArticleDetailsController {
 	private WebView webView;
 
 	/**
-	 * Registered user
-	 */
-	private User usr;
-
-	/**
 	 * Article to be shown
 	 */
 	private Article article;
@@ -62,7 +49,6 @@ public class ArticleDetailsController {
 	 * @param usr the usr to set
 	 */
 	void setUsr(User usr) {
-		this.usr = usr;
 		if (usr == null) {
 			return; // Not logged user
 		}
@@ -91,7 +77,6 @@ public class ArticleDetailsController {
 
 	@FXML
 	void changeAbstractBody(ActionEvent event) {
-		// TODO Niki better codde
 		if (abstractBodyBtn.getText() == "Change to Abstract") {
 			changeAbstractBody(article.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
