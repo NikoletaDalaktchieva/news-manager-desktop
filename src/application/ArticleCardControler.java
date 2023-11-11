@@ -71,7 +71,7 @@ public class ArticleCardControler {
 
 		ArticleDetailsController controller = fxmlLoader.<ArticleDetailsController>getController();
 		controller.setUsr(usr);
-		controller.setArticle(article);
+		controller.setArticle(connection.getFullArticle(article.getIdArticle()));
 
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root1));
@@ -86,7 +86,7 @@ public class ArticleCardControler {
 
 		ArticleEditController controller = fxmlLoader.<ArticleEditController>getController();
 		controller.setUsr(usr);
-		controller.setArticle(article);
+		controller.setArticle(article.equals(null) ? null : connection.getFullArticle(article.getIdArticle()));
 		controller.setConnectionMannager(connection);
 
 		Stage stage = new Stage();
