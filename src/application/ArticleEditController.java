@@ -194,7 +194,7 @@ public class ArticleEditController {
 	void changeAbstractBody(ActionEvent event) {
 		if (bodySwitch) {
 			bodySwitch = false;
-			editingArticle.setBodyText(abstractBody.getText());
+			editingArticle.setBodyText(htmlSwitch ? htmlEditor.getHtmlText() : abstractBody.getText());
 			abstractBody.setText(editingArticle.getAbstractText());
 			htmlEditor.setHtmlText(editingArticle.getAbstractText());
 			abstractBodyBtn.setText("Change to Body");
@@ -203,7 +203,7 @@ public class ArticleEditController {
 		}
 
 		bodySwitch = true;
-		editingArticle.setAbstractText(abstractBody.getText());
+		editingArticle.setAbstractText(htmlSwitch ? htmlEditor.getHtmlText() : abstractBody.getText());
 		abstractBody.setText(editingArticle.getBodyText());
 		htmlEditor.setHtmlText(editingArticle.getBodyText());
 		abstractBodyBtn.setText("Change to Abstract");
